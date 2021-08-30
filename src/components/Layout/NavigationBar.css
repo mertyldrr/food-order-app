@@ -1,0 +1,19 @@
+.navbar {
+  height: 120px;
+  background-color: #353D40;
+}
+
+.navbar-header {
+  color: white;
+}
+
+.navbar-cart-logo {
+  color: #F2B138;
+  margin-bottom: 10px;
+}
+
+.navbar-cart-text {
+  display: inline-block;
+  margin-left: 20px;
+  color: #F2B138;
+}
