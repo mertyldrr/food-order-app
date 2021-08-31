@@ -1,11 +1,16 @@
 import React from 'react';
 import NavigationBar from './components/Layout/NavigationBar';
+import Meal from './components/Meals/Meal';
 
 const App = () => {
   return (
     <div className="App">
       <NavigationBar />
-      <h1>Initial commit</h1>
+      <Meal />
+      <Meal />
+      <Meal />
+      <Meal />
+      <Meal />
     </div>
   );
 }

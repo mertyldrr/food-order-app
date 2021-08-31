@@ -1,0 +1,44 @@
+.meal-container {
+  background-color: antiquewhite;
+  font-family: 'Merienda One', cursive;
+  width: 60%;
+  height: 130px;
+}
+
+.meal-name {
+  font-size: 1.4rem;
+}
+
+.meal-price {
+  font-size: 1.2rem;
+}
+
+.meal-amount {
+  margin-right: 15px;
+}
+
+.meal-input {
+  width: 50px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  margin-top: 2px;
+}
+
+.meal-line {
+  height: 1px;
+  background: #b5bbbe;
+}
+
+.meal-add-button {
+  height: 30px;
+  width: 100px;
+  font-size: 15px;
+  background-color: #6a7073;
+  border-radius: 5px;
+  margin-top: 5px;
+  color: white;
+}
+
+.meal-group-right {
+  margin-right: 20px;
+}

@@ -6,12 +6,13 @@ import "./NavigationBar.css";
 const NavigationBar = () => {
   return (
     <Navbar className="navbar">
-      <Container>
+      <Container className="navbar-container">
         <h1 className="navbar-header">ReactMeals</h1>
         <NavbarBrand>
-          <NavLink className="d-inline-block">
+          <NavLink className="navbar-link">
             <IoCartOutline className="navbar-cart-logo" size={50} />
             <h4 className="navbar-cart-text">Your Cart</h4>
+            <h4 className="navbar-cart-quantity">5</h4>
           </NavLink>
         </NavbarBrand>
       </Container>

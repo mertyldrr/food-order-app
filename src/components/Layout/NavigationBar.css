@@ -1,10 +1,17 @@
 .navbar {
   height: 120px;
-  background-color: #353D40;
+  background-color: #353d40bb;
 }
 
 .navbar-header {
   color: white;
+}
+
+.navbar-link {
+  background-color: #353d40e3;
+  border-radius: 20px;
+  width: 300px;
+  text-align: center;
 }
 
 .navbar-cart-logo {
@@ -16,4 +23,15 @@
   display: inline-block;
   margin-left: 20px;
   color: #F2B138;
+}
+
+.navbar-cart-quantity {
+  display: inline-block;
+  border-radius: 20px;
+  margin-left: 20px;
+  width: 60px;
+  height: 30px;
+  color: #F2B138;
+  font-size: 1.5rem;
+  background-color: #a1a5a688;
 }
