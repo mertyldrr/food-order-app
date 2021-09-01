@@ -3,10 +3,14 @@
   font-family: 'Merienda One', cursive;
   width: 60%;
   height: 130px;
+  z-index: 20;
+  position: static;
+  
 }
 
 .meal-name {
   font-size: 1.4rem;
+  margin-bottom: 3px;
 }
 
 .meal-price {
