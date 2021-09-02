@@ -1,0 +1,41 @@
+.cart-meal-name {
+  font-size: 1.4rem;
+}
+
+.cart-group-left-col {
+  margin-top: 15px;
+}
+
+.cart-group-middle-col {
+  margin-top: 15px;
+}
+
+.cart-group-right-col {
+  margin-top: 40px;
+  margin-right: 10px;
+}
+
+.cart-quantity-value {
+  border-radius: 8px;
+  margin-top: 20px;
+  background-color: white;
+  border-color: #a1a5a688;
+  width: 70px;
+  color: black;
+}
+
+.cart-button-group {
+  border-radius: 8px;
+  background-color: white;
+  border-color: #a1a5a688;
+  width: 100px;
+  color: black;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.cart-line {
+  height: 2px;
+  background: #b5bbbe;
+  margin-bottom: 5px;
+}

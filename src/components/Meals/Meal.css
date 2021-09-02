@@ -1,16 +1,17 @@
 .meal-container {
-  background-color: antiquewhite;
   font-family: 'Merienda One', cursive;
-  width: 60%;
-  height: 130px;
+  width: 100%;
   z-index: 20;
-  position: static;
-  
 }
 
 .meal-name {
   font-size: 1.4rem;
   margin-bottom: 3px;
+  margin-top: 3px;
+}
+
+.meal-description {
+  font-size: 0.9rem;
 }
 
 .meal-price {

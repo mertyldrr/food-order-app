@@ -1,7 +1,9 @@
 import React from 'react';
 import Meal from './Meal';
+import Card from '../UI/Card';
+import { ListGroup } from 'react-bootstrap';
 
-const DUMMY_MEALS = [
+export const DUMMY_MEALS = [
   {
     id: 'm1',
     name: 'Sushi',
@@ -29,15 +31,17 @@ const DUMMY_MEALS = [
 ];
 
 const MealList = () => {
-  
+
   const list = DUMMY_MEALS.map((meal) => (
     <Meal key={meal.id} meal={meal} />
   ))
 
   return (
-    <ul>
-      {list}
-    </ul>
+    <Card>
+      <ListGroup>
+        {list}
+      </ListGroup>
+    </Card>
   );
 };
 

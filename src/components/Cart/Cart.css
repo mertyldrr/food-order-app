@@ -1,0 +1,27 @@
+.modal-body {
+  padding-bottom: 20px;
+  font-family: 'Merienda One', cursive;
+}
+
+.modal-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+.modal-total-price {
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.cart-buttons button {
+  margin-left: 15px;
+  width: 120px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.close {
+  background-color: #6a7073;
+  color: white;
+}
