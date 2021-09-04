@@ -17,7 +17,7 @@ const Header = () => {
   }, 0); 
 
   const onClickHandler = () => {
-    setShowModal(!showModal);
+    setShowModal(prevModal => !prevModal);
   }
 
   return (

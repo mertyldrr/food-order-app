@@ -12,11 +12,11 @@ const Cart = ({ showModal, onClickHandler }) => {
   const hasItems = cartCtx.meals.length > 0;
 
   const cartItemRemoveHandler = (id) => {
-
+    cartCtx.removeMeal(id);
   };
 
   const cartItemAddHandler = (item) => {
-
+    cartCtx.addMeal({...item, quantity: 1})
   };
 
   const list = cartCtx.meals.map((item) => (
