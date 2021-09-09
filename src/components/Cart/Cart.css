@@ -31,3 +31,8 @@
   background-color: #6a7073;
   color: white;
 }
+
+.error {
+  color: red;
+  font-size: 1rem;
+}
