@@ -55,6 +55,10 @@ const cartReducer = (state, action) => {
     }
 
   }
+
+  if (action.type === 'CLEAR_CART') {
+    return defaultCartState;
+  }
   return defaultCartState;
 };
 
@@ -63,18 +67,23 @@ const CartProvider = ({ children }) => {
   const [cartState, dispatchCartAction] = useReducer(cartReducer, defaultCartState);
 
   const addMealHandler = meal => {
-    dispatchCartAction({ type: 'ADD_MEAL', meal: meal })
+    dispatchCartAction({ type: 'ADD_MEAL', meal: meal });
   };
 
   const removeMealHandler = id => {
-    dispatchCartAction({ type: 'REMOVE_MEAL', id: id })
+    dispatchCartAction({ type: 'REMOVE_MEAL', id: id });
+  };
+
+  const clearCartHandler = () => {
+    dispatchCartAction({ type: 'CLEAR_CART' });
   };
 
   const cardContext = {
     meals: cartState.meals,
     totalAmount: cartState.totalAmount,
     addMeal: addMealHandler,
-    removeMeal: removeMealHandler
+    removeMeal: removeMealHandler,
+    clearCart: clearCartHandler
   }
 
   return (

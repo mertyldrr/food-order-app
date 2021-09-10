@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { Fragment, useState, useContext, useRef } from 'react';
 import { Modal, Container, Form } from 'react-bootstrap';
 import CartItem from './CartItem';
 import CartContext from '../../store/cart-context';
@@ -11,6 +11,9 @@ const Cart = ({ showModal, onClickHandler }) => {
 
   const cartCtx = useContext(CartContext);
   const [isCheckout, setIsCheckout] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [didSubmit, setDidSubmit] = useState(false);
+  const [httpError, setHttpError] = useState(null);
 
   const [formInputValidity, setFormInputValidity] = useState({
     name: true,
@@ -18,7 +21,7 @@ const Cart = ({ showModal, onClickHandler }) => {
     city: true,
     postalCode: true
   });
-  
+
   const nameInputRef = useRef();
   const streetInputRef = useRef();
   const postalCodeInputRef = useRef();
@@ -39,14 +42,29 @@ const Cart = ({ showModal, onClickHandler }) => {
     setIsCheckout(true);
   }
 
-  const submitOrderHandler = (userData) => {
-    fetch("https://food-order-84b3e-default-rtdb.europe-west1.firebasedatabase.app/orders.json", {
-      method: "POST",
-      body: JSON.stringify({
-        user: userData,
-        orderedMeals: cartCtx.meals
-      })
-    });
+  const submitOrderHandler = async (userData) => {
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("https://food-order-84b3e-default-rtdb.europe-west1.firebasedatabase.app/orders.json", {
+        method: "POST",
+        body: JSON.stringify({
+          user: userData,
+          orderedMeals: cartCtx.meals
+        })
+      });
+
+      if (!res.ok) {
+        setDidSubmit(false);
+        throw new Error("Something went wrong!");
+      }
+      else {
+        setDidSubmit(true);
+      }
+    } catch (error) {
+      setHttpError(error.message);
+    }
+    setIsSubmitting(false);
+    cartCtx.clearCart();
   }
 
   const checkoutHandler = (e) => {
@@ -68,13 +86,17 @@ const Cart = ({ showModal, onClickHandler }) => {
       postalCode: enteredPostalCodeIsValid
     })
 
-    const formIsValid = 
-    enteredNameIsValid && 
-    enteredStreetIsValid && 
-    enteredCityIsValid && 
-    enteredPostalCodeIsValid;
+    const formIsValid =
+      enteredNameIsValid &&
+      enteredStreetIsValid &&
+      enteredCityIsValid &&
+      enteredPostalCodeIsValid;
 
     if (!formIsValid) {
+      return;
+    }
+
+    if (httpError) {
       return;
     }
 
@@ -88,7 +110,7 @@ const Cart = ({ showModal, onClickHandler }) => {
     submitOrderHandler(userData);
 
   };
-  
+
 
   const list = cartCtx.meals.map((item) => (
     <CartItem
@@ -125,6 +147,7 @@ const Cart = ({ showModal, onClickHandler }) => {
         <button onClick={onClickHandler} className="close">Cancel</button>
         {hasItems && <button type="submit" className="order" onClick={checkoutHandler}>Confirm</button>}
       </Container>
+      {httpError && <p className="http-error">{httpError}</p>}
     </Form>
   )
 
@@ -135,13 +158,8 @@ const Cart = ({ showModal, onClickHandler }) => {
     </Container>
   )
 
-  return (
-    <Modal
-      className="modal"
-      size="lg"
-      show={showModal}
-      onHide={onClickHandler}
-    >
+  const cartModalContent = (
+    <Fragment>
       <Modal.Header closeButton className="d-flex-row modal-header">
         <Modal.Title className="modal-title">Cart Summary</Modal.Title>
       </Modal.Header>
@@ -154,6 +172,26 @@ const Cart = ({ showModal, onClickHandler }) => {
         {isCheckout && checkoutForm}
         {!isCheckout && modalActions}
       </Modal.Body>
+    </Fragment>
+  )
+
+  const didSubmitModalContent = (
+    <Modal.Body>
+      <div className="order-success d-flex justify-content-center align-items-center">
+        <p>Successfully sent the order!</p>
+      </div>
+    </Modal.Body>
+  )
+
+  return (
+    <Modal
+      className="modal"
+      size="lg"
+      show={showModal}
+      onHide={onClickHandler}
+    >
+      {!isSubmitting && !didSubmit && cartModalContent}
+      {didSubmit && didSubmitModalContent}
     </Modal>
   )
 };
